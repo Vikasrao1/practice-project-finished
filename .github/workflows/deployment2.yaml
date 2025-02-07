@@ -1,0 +1,38 @@
+name: Deployment Exercise 2
+on: push      #adding a trigger this workflow should run whenever a new commit is pushed
+jobs:         #adding multiple jobs, one job for testing and 1 job for deploying
+    lint:
+        runs-on: ubuntu-latest
+        steps:
+            - name: get code or checkout the code
+              uses: actions/checkout@v3
+             # step 2 : Install dependencies
+            - name: Install dependencies
+              run: npm ci
+             # step 3: Lint the code
+            - name: run lint
+              run: npm run lint #lint script should be in the package.json file
+    test:
+        runs-on: ubuntu-latest #defining runner
+        steps:
+            - name: get code or checkout the code
+              uses: actions/checkout@v3
+             # step 2 : Install dependencies
+            - name: Install dependencies
+              run: npm ci
+             # step 3: Lint the code
+            - name: run test
+              run: npm run test #lint script should be in the package.json file    
+    deploy:
+        runs-on: ubuntu-latest #defining runner
+        steps:
+            - name: get code or checkout the code
+              uses: actions/checkout@v3
+             # step 2 : Install dependencies
+            - name: Install dependencies
+              run: npm ci
+            - name: build code
+              run: npm run build
+            - name: Deploy code
+              run: echo " Deploying.." 
+              
