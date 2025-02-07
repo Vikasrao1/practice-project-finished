@@ -13,6 +13,7 @@ jobs:         #adding multiple jobs, one job for testing and 1 job for deploying
             - name: run lint
               run: npm run lint #lint script should be in the package.json file
     test:
+        needs: lint # adding dependency to run jobs one after another
         runs-on: ubuntu-latest #defining runner
         steps:
             - name: get code or checkout the code
@@ -24,6 +25,7 @@ jobs:         #adding multiple jobs, one job for testing and 1 job for deploying
             - name: run test
               run: npm run test #lint script should be in the package.json file    
     deploy:
+        needs: test #adding dependencies
         runs-on: ubuntu-latest #defining runner
         steps:
             - name: get code or checkout the code
