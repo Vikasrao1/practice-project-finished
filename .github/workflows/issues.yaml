@@ -5,5 +5,5 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: output event details
-              run: echo "{{toJSON(github.event)}}" #since github has lot of objects we are limiting to nested objects here github.event
+              run: echo "${{ toJSON(github.event) }}" #since github has lot of objects we are limiting to nested objects here github.event
             
